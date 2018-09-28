@@ -6,6 +6,10 @@ const apiKey  = require('./conf').apiKey;
 
 const client = new sgClient(apiKey);
 
+
+// Get some information about the account and a list
+// of signups with their registrants
+
 (async () => {
 
     const data = { };
@@ -59,48 +63,3 @@ const client = new sgClient(apiKey);
         .catch(e => console.log(e));
 
 })();
-
-
-/*
-    ========
-    PROMISES
-    ========
-*/
-
-/*
-client.getProfile()
-    .then(user => {
-        console.log(`Account Name: ${ user.firstname } ${ user.lastname }`);
-        console.log(`Account Email: ${ user.email }`);
-        console.log(`Account ID: ${ user.memberid }`);
-        console.log('\n########################\n');
-    })
-    .then(() => {
-        client.getAllSignups()
-            .then(signups => {
-
-                signups.forEach(signup => {
-                    const title = signup.title,
-                          id    = signup.signupid,
-                          start = new Date(signup.startdate * 1000);
-
-                    client.getSignupRegistrants(id)
-                        .then(registrants => {
-                            console.log(`Signup Title: ${ title }`);
-                            console.log(`Signup ID: ${ id }`);
-                            console.log(`Start Date: ${ start }`);
-                            console.log('Registrants:');
-
-                            registrants.forEach(person => {
-                                console.log(`${ person.firstname } ${ person.lastname } - ${ person.email }`);
-                            });
-                            console.log('-------------------------\n')
-                        })
-                        .catch(e => console.log(e));
-                })
-
-            })
-            .catch(e => console.log(e));
-    })
-    .catch(e => console.log(e));
-*/
