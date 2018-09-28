@@ -1,0 +1,26 @@
+{
+  "name": "signup-genius-client",
+  "version": "1.0.0",
+  "description": "'NodeJS Signup Genius API Client'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brycejech/signup-genius-client.git"
+  },
+  "keywords": [
+    "Signup",
+    "Genius"
+  ],
+  "author": "Bryce Jech",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brycejech/signup-genius-client/issues"
+  },
+  "homepage": "https://github.com/brycejech/signup-genius-client#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
