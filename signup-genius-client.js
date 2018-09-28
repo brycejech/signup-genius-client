@@ -66,6 +66,42 @@ signupGeniusClient.prototype.getAllSignups = function getAllSignups(){
     });
 }
 
+signupGeniusClient.prototype.getActiveSignups = function getActiveSignups(){
+
+    const url = `${ this.baseUrl }/signups/created/active/?user_key=${ this.apiKey }`;
+
+    return new Promise((resolve, reject) => {
+        this.makeRequest(url)
+            .then(res => {
+                if(res.success){
+                    resolve(res.data);
+                }
+                reject(new Error('Error fetching signups'));
+            })
+            .catch(e => {
+                reject(e);
+            })
+    });
+}
+
+signupGeniusClient.prototype.getExpiredSignups = function getExpiredSignups(){
+
+    const url = `${ this.baseUrl }/signups/created/expired/?user_key=${ this.apiKey }`;
+
+    return new Promise((resolve, reject) => {
+        this.makeRequest(url)
+            .then(res => {
+                if(res.success){
+                    resolve(res.data);
+                }
+                reject(new Error('Error fetching signups'));
+            })
+            .catch(e => {
+                reject(e);
+            })
+    });
+}
+
 signupGeniusClient.prototype.getSignupReport = function getSignupReport(signupID){
 
     const url = `${ this.baseUrl }/signups/report/all/${ signupID }/?user_key=${ this.apiKey }`;
