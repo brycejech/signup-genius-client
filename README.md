@@ -10,6 +10,8 @@ npm install signup-genius-client
 
 ## Usage
 
+**Note**: You must have a SignUpGenius Pro account and API key to access the API.
+
 ```js
 'use strict';
 
@@ -53,3 +55,7 @@ client.getAllSignups()
 ### SignupGeniusClient.prototype.getSignupReport(signupID)
 
 ### SignupGeniusClient.prototype.getSignupRegistrants(signupID)
+
+## Information
+
+[SignUpGenius API documentation](https://developer.signupgenius.com/developer/keybaseddocs)
