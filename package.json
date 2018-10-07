@@ -12,7 +12,9 @@
   },
   "keywords": [
     "Signup",
-    "Genius"
+    "Genius",
+    "API",
+    "Client"
   ],
   "author": "Bryce Jech",
   "license": "MIT",
