@@ -82,7 +82,7 @@ client.getProfile()
     address2: String,
     city:     String,
     state:    String,
-    zipcode:  String,
+    zipcode:  String
 }
 ```
 
