@@ -1,6 +1,6 @@
 {
   "name": "signup-genius-client",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "'NodeJS Signup Genius API Client'",
   "main": "index.js",
   "scripts": {
