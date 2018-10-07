@@ -88,6 +88,57 @@ client.getProfile()
 
 ### SignupGeniusClient.prototype.getAllSignups()
 
+```js
+client.getAllSignups()
+    .then(signups => {
+        // Do something with signup data
+    })
+    .catch(e => {
+        // Handle error
+    })
+```
+
+#### Signups Schema
+
+```js
+[
+    // Signup
+    {
+        // General
+        signupid:    Number,
+        title:       String,
+        signupurl:   String,
+        contactname: String,
+
+        // Time info
+        startdate:       Number, // Unix timestamp
+        enddate:         Number, // Unix timestamp
+        startdatestring: String,
+        enddatestring:   String,
+        starttime:       Number,
+        endtime:         Number,
+        offset:          String,
+
+        // Images
+        mainimage: String,
+        thumbnail: String,
+
+        // Group Info
+        groupid: Number,
+        group:   String,
+
+        // Slot info
+        slotmetrics: {
+            totalslots:          Number,
+            totalslotsfilled:    Number,
+            totalavailableslots: Number,
+            percentageavailable: String,
+            percentagefilled:    String
+        }
+    }
+]
+```
+
 ### SignupGeniusClient.prototype.getActiveSignups()
 
 ### SignupGeniusClient.prototype.getExpiredSignups()
