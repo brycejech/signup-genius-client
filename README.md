@@ -229,8 +229,6 @@ client.getExpiredSignups()
 
 Gets a signup report that includes information about registered users and unfilled slots. If you are wanting information about registered users, you probably want to use the `client.getSignupRegistrants(signupID)` method instead.
 
-**Note:** The SignUp Genius API documentation indicates that there should also be an array of custom questions sent along with this response. There is a bug in their current API version (v2) that is preventing the `customquestions` array from being returned, even if the given signup does have custom questions.
-
 ```js
 client.getSignupReport(signupID)
     .then(signups => {
@@ -242,6 +240,8 @@ client.getSignupReport(signupID)
 ```
 
 #### Signup Report Schema
+
+**Note:** The SignUp Genius API documentation indicates that there should also be an array of custom questions sent along with this response. There is a bug in their current API version (v2) that is preventing the `customquestions` array from being returned, even if the given signup does have custom questions.
 
 ```js
 // Signup Report (filled and unfilled slots)
@@ -292,6 +292,70 @@ client.getSignupReport(signupID)
 ```
 
 ### SignupGeniusClient.prototype.getSignupRegistrants(signupID)
+
+Gets a report of registrants (filled slots) for a given signup.
+
+```js
+client.getSignupRegistrants(signupID)
+    .then(signups => {
+        // Do something with signup data
+    })
+    .catch(err => {
+        // Handle error
+    });
+```
+
+#### Signup Registrants Schema
+
+**Note:** The SignUp Genius API documentation indicates that there should also be an array of custom questions sent along with this response. There is a bug in their current API version (v2) that is preventing the `customquestions` array from being returned, even if the given signup does have custom questions.
+
+```js
+// Signup Report (filled slots)
+[
+    {
+        // General
+        signupid:     Number,
+        slotitemid:   Number,
+        itemmemberid: Number,
+        status:       String,
+        item:         String,
+        myqty:        Number,
+
+        // Time info
+        startdate:       Number,
+        enddate:         Number,
+        startdatestring: String,
+        enddatestring:   String,
+        starttime:       Number,
+        endtime:         Number,
+
+        // Location info
+        address1: String,
+        address2: String,
+        city:     String,
+        state:    String,
+        zipcode:  String,
+        country:  String,
+
+        // User info
+        firstname: String,
+        lastname:  String,
+        phone:     String,
+        phonetype: String,
+
+        amountpaid: String,
+
+        // Array of custom question responses,
+        // does not inlcude questions themselves
+        customfields: [
+            {
+                customfieldid: Number,
+                value:         String
+            }
+        ]
+    }
+]
+```
 
 ## Information
 
