@@ -134,6 +134,20 @@ SignupGeniusClient.prototype.getSignupRegistrants = function getSignupRegistrant
     });
 }
 
+SignupGeniusClient.prototype.getSlotsAvailable = function getSlotsAvailable(signupID){
 
+    const url = `${ this.baseUrl }/signups/report/available/${ signupID }/?user_key=${ this.apiKey }`;
+
+    return new Promise((resolve, reject) => {
+        this.makeRequest(url)
+            .then(res => {
+                if(res.success){
+                    resolve(res.data.signup);
+                }
+                reject(new Error(`Error fetching signup filled report for signupID ${ signupID }`));
+            })
+            .catch(e => reject(e));
+    });
+}
 
 module.exports = SignupGeniusClient;
