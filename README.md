@@ -100,7 +100,7 @@ client.getAllSignups()
     })
 ```
 
-#### Signups Schema
+#### All Signups Schema
 
 ```js
 [
@@ -181,7 +181,16 @@ client.getActiveSignups()
 
         // Group info
         groupid: Number,
-        group:   String
+        group:   String,
+
+        // Slot info
+        slotmetrics: {
+            totalslots:          Number,
+            totalslotsfilled:    Number,
+            totalavailableslots: Number,
+            percentageavailable: String,
+            percentagefilled:    String
+        }
     }
 ]
 ```
@@ -226,7 +235,16 @@ client.getExpiredSignups()
 
         // Group info
         groupid: Number,
-        group:   String
+        group:   String,
+
+        // Slot info
+        slotmetrics: {
+            totalslots:          Number,
+            totalslotsfilled:    Number,
+            totalavailableslots: Number,
+            percentageavailable: String,
+            percentagefilled:    String
+        }
     }
 ]
 ```
@@ -253,6 +271,7 @@ client.getSignupReport(signupID)
 // Signup Report (filled and unfilled slots)
 [
     {
+
         // General
         signupid:     Number,
         slotitemid:   Number,
@@ -268,20 +287,17 @@ client.getSignupReport(signupID)
         enddatestring:   String,
         starttime:       Number,
         endtime:         Number,
+        offset:          String,
+        hastime:         Number, // May not be present for unfilled slots
 
         // Location info
-        address1: String,
-        address2: String,
-        city:     String,
-        state:    String,
-        zipcode:  String,
-        country:  String,
+        location: String,
 
         // User info
         firstname: String,
         lastname:  String,
-        phone:     String,
-        phonetype: String,
+        email:     String,
+        comment:   String,
 
         amountpaid: String,
 
@@ -289,6 +305,7 @@ client.getSignupReport(signupID)
         // does not inlcude questions themselves
         customfields: [
             {
+                id:            Number,
                 customfieldid: Number,
                 value:         String
             }
@@ -319,6 +336,7 @@ client.getSignupRegistrants(signupID)
 // Signup Report (filled slots)
 [
     {
+
         // General
         signupid:     Number,
         slotitemid:   Number,
@@ -334,20 +352,17 @@ client.getSignupRegistrants(signupID)
         enddatestring:   String,
         starttime:       Number,
         endtime:         Number,
+        offset:          String,
+        hastime:         Number,
 
         // Location info
-        address1: String,
-        address2: String,
-        city:     String,
-        state:    String,
-        zipcode:  String,
-        country:  String,
+        location: String,
 
         // User info
         firstname: String,
         lastname:  String,
-        phone:     String,
-        phonetype: String,
+        email:     String,
+        comment:   String,
 
         amountpaid: String,
 
@@ -355,6 +370,7 @@ client.getSignupRegistrants(signupID)
         // does not inlcude questions themselves
         customfields: [
             {
+                id:            Number,
                 customfieldid: Number,
                 value:         String
             }
@@ -384,8 +400,8 @@ client.getSignupRegistrants(signupID)
 ```js
 // Signup Report (available slots)
 [
-    // Note that for slots available, most information will be empty/falsy
     {
+
         // General
         signupid:     Number,
         slotitemid:   Number,
@@ -401,20 +417,16 @@ client.getSignupRegistrants(signupID)
         enddatestring:   String,
         starttime:       Number,
         endtime:         Number,
+        offset:          String,
 
         // Location info
-        address1: String,
-        address2: String,
-        city:     String,
-        state:    String,
-        zipcode:  String,
-        country:  String,
+        location: String,
 
         // User info
         firstname: String,
         lastname:  String,
-        phone:     String,
-        phonetype: String,
+        email:     String,
+        comment:   String,
 
         amountpaid: String,
 
@@ -422,6 +434,7 @@ client.getSignupRegistrants(signupID)
         // does not inlcude questions themselves
         customfields: [
             {
+                id:            Number,
                 customfieldid: Number,
                 value:         String
             }
