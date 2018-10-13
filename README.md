@@ -1,8 +1,6 @@
 # signup-genius-client
 NodeJS Signup Genius API Client
 
-# SignupGeniusClient Class
-
 ## Installation
 ```bash
 npm install signup-genius-client
@@ -41,6 +39,8 @@ client.getAllSignups()
     }
 })();
 ```
+
+# SignupGeniusClient Class
 
 ## Methods
 
@@ -123,7 +123,7 @@ client.getAllSignups()
         mainimage: String,
         thumbnail: String,
 
-        // Group Info
+        // Group info
         groupid: Number,
         group:   String,
 
@@ -141,9 +141,155 @@ client.getAllSignups()
 
 ### SignupGeniusClient.prototype.getActiveSignups()
 
+```js
+client.getActiveSignups()
+    .then(signups => {
+        // Do something with signup data
+    })
+    .catch(e => {
+        // Handle error
+    })
+```
+
+#### Active Signups Schema
+
+```js
+[
+    // Active Signup
+    {
+        // General
+        signupid:    Number,
+        title:       String,
+        signupurl:   String,
+        contactname: String,
+
+        // Time info
+        startdate:       Number,
+        enddate:         Number,
+        startdatestring: String,
+        enddatestring:   String,
+        starttime:       Number,
+        endtime:         Number,
+
+        // Images
+        mainimage: String,
+        thumbnail: String,
+
+        // Group info
+        groupid: Number,
+        group:   String
+    }
+]
+```
+
 ### SignupGeniusClient.prototype.getExpiredSignups()
 
+```js
+client.getExpiredSignups()
+    .then(signups => {
+        // Do something with signup data
+    })
+    .catch(err => {
+        // Handle error
+    });
+```
+
+#### Expired Signups Schema
+
+```js
+[
+    // Expired Signup
+    {
+        // General
+        signupid:    Number,
+        title:       String,
+        signupurl:   String,
+        contactname: String,
+
+        // Time info
+        startdate:       Number,
+        enddate:         Number,
+        startdatestring: String,
+        enddatestring:   String,
+        starttime:       Number,
+        endtime:         Number,
+
+        // Images
+        mainimage: String,
+        thumbnail: String,
+
+        // Group info
+        groupid: Number,
+        group:   String
+    }
+]
+```
+
 ### SignupGeniusClient.prototype.getSignupReport(signupID)
+
+Gets a signup report that includes information about registered users and unfilled slots. If you are wanting information about registered users, you probably want to use the `client.getSignupRegistrants(signupID)` method instead.
+
+**Note:** The SignUp Genius API documentation indicates that there should also be an array of custom questions sent along with this response. There is a bug in their current API version (v2) that is preventing the `customquestions` array from being returned, even if the given signup does have custom questions.
+
+```js
+client.getSignupReport(signupID)
+    .then(signups => {
+        // Do something with signup data
+    })
+    .catch(err => {
+        // Handle error
+    });
+```
+
+#### Signup Report Schema
+
+```js
+// Signup Report (filled and unfilled slots)
+[
+    {
+        // General
+        signupid:     Number,
+        slotitemid:   Number,
+        itemmemberid: Number,
+        status:       String,
+        item:         String,
+        myqty:        Number,
+
+        // Time info
+        startdate:       Number,
+        enddate:         Number,
+        startdatestring: String,
+        enddatestring:   String,
+        starttime:       Number,
+        endtime:         Number,
+
+        // Location info
+        address1: String,
+        address2: String,
+        city:     String,
+        state:    String,
+        zipcode:  String,
+        country:  String,
+
+        // User info
+        firstname: String,
+        lastname:  String,
+        phone:     String,
+        phonetype: String,
+
+        amountpaid: String,
+
+        // Array of custom question responses,
+        // does not inlcude questions themselves
+        customfields: [
+            {
+                customfieldid: Number,
+                value:         String
+            }
+        ]
+    }
+]
+```
 
 ### SignupGeniusClient.prototype.getSignupRegistrants(signupID)
 
